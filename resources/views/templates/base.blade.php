@@ -12,7 +12,7 @@
 <body>
     <header class='navbar'>
         <a href="{{ routeLang('home') }}"><img src="{{ asset('logo.png') }}" alt="{{ env('APP_NAME') }} logo"></a>
-        <a href="{!! $view_name === 'home' ? '#' : routeLang('home') !!}" class="home-button" {!! $view_name === 'home' ? 'active' : '' !!}><i
+        <a href="{!! $view_name === 'home' ? '#' : routeLang('home') !!}" class="home-button link" {!! $view_name === 'home' ? 'active' : '' !!}><i
                 class="bi bi-house-door-fill">home</i></a>
 
 
@@ -26,16 +26,16 @@
         </div>
         <div class='navbar-buttons'>
 
-            <a href="{!! $view_name === 'settings' ? '#' : routeLang('settings') !!}" class="settings-button" {!! $view_name === 'settings' ? 'active' : '' !!}>
+            <a href="{!! $view_name === 'settings' ? '#' : routeLang('settings') !!}" class="settings-button link" {!! $view_name === 'settings' ? 'active' : '' !!}>
                 <i class="bi bi-gear">configuracoes</i>
             </a>
             @auth
                 @if (auth()->user()->isAdmin)
-                    <a href="{!! $view_name === 'admin.aprovacoes' ? '#' : routeLang('aprovacoes') !!}" class="account-button" {!! $view_name === 'admin.aprovacoes' ? 'active' : '' !!}><i
+                    <a href="{!! $view_name === 'admin.aprovacoes' ? '#' : routeLang('aprovacoes') !!}" class="account-button link" {!! $view_name === 'admin.aprovacoes' ? 'active' : '' !!}><i
                             class="bi bi-person-circle">Aprovacoes</i></a>
 
                 @else
-                    <a href="{!! $view_name === 'profile' ? '#' : routeLang('profile', auth()->user()->id) !!}" class="account-button" {!! $view_name === 'profile' ? 'active' : '' !!}><i
+                    <a href="{!! $view_name === 'profile' ? '#' : routeLang('profile', auth()->user()->id) !!}" class="account-button link" {!! $view_name === 'profile' ? 'active' : '' !!}><i
                             class="bi bi-person-circle">conta</i></a>
 
                 @endif
@@ -117,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function(event){
 
         function onMount(e){
             modal.content.querySelector('#modal-avaliar-nome-usuario').innerText = e.target.dataset.username
+            data.postId = e.target.dataset.postId
             Array.from(modal.content.querySelectorAll('textarea')).map(activateInput)
             modal.content.getElementsByTagName('BUTTON')[0].addEventListener('click', submit)
             Array.from(modal.content.querySelectorAll('.half-star')).map((el)=>{
@@ -147,20 +148,21 @@ document.addEventListener('DOMContentLoaded', function(event){
             e.preventDefault();
             const stars = modal.content.querySelectorAll('.half-star.active').length;
             const texto = modal.content.querySelector('textarea').value;
-            const data = {
+            debugger
+            const post_data = {
                 'token' : "{{ auth()->user()->api_token }}",
                 'stars' : stars,
+                'id' : data.postId,
                 'texto' : texto
             }
             $.ajax({
                 'url' : "{{ route('avaliar') }}",
                 'method' : 'POST',
-                'data' : data,
+                'data' : post_data,
                 success: ()=>{
                     modal.toggle()
                 }
             });
-            debugger
 
         }
         function activateInput(el){
@@ -229,40 +231,7 @@ function denunciaModalDriver(modal, info){
         content : null,
         currentPage : []
     }
-    const pages = {
-        '24':{
-            text: 'Discurso de Odio',
-            children : {
-                '42' : {
-                    text: 'teste odio'
-                }
-            }
-        },
-        '43':{
-            text: 'Esta conta é falsa',
-            children : {
-                '42' : {
-                    text: 'teste falsa',
-                    children : {
-                        '42' : {
-                            text: 'teste falsa'
-                        }
-                    }
-                }
-            }
-        },
-        '52':{
-            text: 'Ele me agride',
-        },
-        '54':{
-            text: 'Outro Motivo',
-            children : {
-                '42' : {
-                    text: 'teste outro motivo'
-                }
-            }
-        }
-    };
+    const pages = @json(categorias_denuncias());
 
     function createBackButton(){
         const backButton = document.createElement('li');
@@ -323,6 +292,39 @@ function denunciaModalDriver(modal, info){
     }
     function itemClick(e){
         debugger
+        data.content.innerHTML = '';
+
+        
+        const post_data = {
+            'denuncia_tipo' : e.target.dataset.pageId,
+            'post_id' : data.current.postId
+        }
+
+        $.ajax({
+            url : '{{route("denunciar")}}',
+            method : 'POST',
+            headers: {
+                'Authorization':'Bearer {{auth()->user()->api_token}}'
+            },
+            data : post_data,
+            success: ()=>{
+                const wrapper = document.createElement('div');
+                const h1 = document.createElement('h1');
+                h1.innerText = '{{__("view.report.sucess")}}'
+                const text = document.createElement('p');
+                text.innerText = '{{__("view.report.sucess_text")}}'
+                wrapper.append(h1)
+                wrapper.append(text)
+                data.content.append(wrapper)
+            },
+            error : ()=>{
+                debugger
+                const h1 = document.createElement('h1');
+                h1.innerText = '{{__("view.report.error")}}'
+                data.content.append(h1)
+            }
+        })
+
     }
 
     function getCurrentPage(){

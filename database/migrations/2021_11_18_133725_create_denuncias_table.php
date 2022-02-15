@@ -22,7 +22,7 @@ class CreateDenunciasTable extends Migration
             $table->foreign('postagem_id')->references('id')->on('postagens');
 
             $table->unsignedBigInteger('tipo_denuncia_id');
-            $table->foreign('tipo_denuncia_id')->references('id')->on('denuncias_tipos');
+            $table->foreign('tipo_denuncia_id')->references('id')->on('denuncia_tipos');
 
             $table->unsignedBigInteger('analizado_por_id')->nullable();
             $table->foreign('analizado_por_id')->references('id')->on('usuarios');

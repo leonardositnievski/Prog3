@@ -92,4 +92,19 @@ class Postagem extends Model
                                     ->first();
 
     }
+
+    public function denunciar($tipo){
+        $denuncia = Denuncia::where('postagem_id', $this->id)
+                        ->where('denunciante_id',user()->id)
+                        ->first();
+        if($denuncia){
+            throw new \Exception("Usuario ja denunciado");
+        }
+
+        return Denuncia::create([
+            'denunciante_id' => user()->id,
+            'postagem_id' => $this->id,
+            'tipo_denuncia_id' => $tipo,
+        ]);
+    }
 }

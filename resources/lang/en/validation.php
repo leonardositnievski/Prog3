@@ -30,6 +30,9 @@ return [
         'string' => 'The :attribute must be between :min and :max characters.',
         'array' => 'The :attribute must have between :min and :max items.',
     ],
+    'max_midia_size' => 'File exceeds size limit: :file_size KB, limit: :size KB',
+    'invalid_midia_type' => 'Incorrect file type: :file_type, valid types: :valid_types',
+
     'boolean' => 'The :attribute field must be true or false.',
     'confirmed' => 'The :attribute confirmation does not match.',
     'current_password' => 'The password is incorrect.',

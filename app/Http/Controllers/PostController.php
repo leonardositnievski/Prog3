@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DenunciaTipo;
 use App\Models\Midia;
 use App\Models\Postagem;
 use App\Models\Usuario;
@@ -61,7 +62,10 @@ class PostController extends Controller
         $post->avaliar($request->stars, $request->texto);
         return response()->json(__('api.post.review.insert'), 201);
     }
-    public function denunciar() {
+    public function denunciar(Request $request) {
+        $postagem = Postagem::findOrFail($request->post_id);
+        $postagem->denunciar($request->denuncia_tipo);
+        return response()->json('sucesso', 201);
     }
 
 

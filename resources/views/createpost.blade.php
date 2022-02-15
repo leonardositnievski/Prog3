@@ -31,9 +31,6 @@
 
 
                     <input type="file" name='midia' id='midia'>
-                    <div class="post-geo">
-                        <i class="bi bi-geo-alt-fill"></i>
-                    </div>
                 </div>
                 <div class="post-actions">
                     <button type='submit'>{{__('view.create-post.actions.submit')}}</button>

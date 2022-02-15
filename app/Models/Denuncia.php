@@ -12,10 +12,8 @@ class Denuncia extends Model
         'denunciante_id',
         'postagem_id',
         'tipo_denuncia_id',
-        'comentario_id',
         'analizado_por_id',
         'analizado_em',
-        'denuncia_texto'
     ];
     protected $casts = [
         'analizado_em' => 'datetime',

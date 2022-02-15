@@ -11,9 +11,13 @@ class ImageInput extends Component
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name,$url= null ,$placeholder = '',$hint = null)
     {
-        //
+        $this->name = $name;
+        $this->placeholder = $placeholder;
+        $this->hint = $hint;
+        $this->url = $url;
+        // $this->values = $values;
     }
 
     /**
@@ -23,6 +27,14 @@ class ImageInput extends Component
      */
     public function render()
     {
-        return view('components.image-input');
+        return function($data){
+            return view('components.image-input')->with([
+                'name' => $this->name,
+                'placeholder' => $this->placeholder,
+                'url' => $this->url,
+                'attributes' => $data['attributes']
+            ])->render();
+        };
+     
     }
 }

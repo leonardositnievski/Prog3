@@ -13,10 +13,12 @@ return [
     |
     */
     "name" => 'name',
+    "bio" => "bio",
+    "photo" => "photo",
     "password" => "password",
-    "password_hint" => "HINT : your password should be atleast 10 characters long",
-    "password_confirm" => "password confirm",
-    "username" => "username",
+    "password_hint" => "HINT : Your password should be at least 10 characters long",
+    "password_confirm" => "passoword confirmation",
+    "username" => "usename",
     "email" => "email",
 
     "create-account" =>[
@@ -31,9 +33,13 @@ return [
     ],
     "settings" => [
         'title' => 'Settings',
+        'private_profile' => 'Private profile',
+        'save' => "Save"
     ],
+
+
     "create-post"=>[
-        'title' => 'Create post',
+        'title' => 'Create Post',
         'actions' =>[
             'submit' => 'Publish',
             'cancel' => 'Cancel'
@@ -43,24 +49,67 @@ return [
         "title" => 'title',
         'genre' => 'genre',
         'description' => 'description',
-        'report' => 'Report post',
-        'report-comment' => 'Report comment',
+        'report' => 'Report',
         'actions' => [
-            'rate' => 'Rate',
-            'comment' => 'Comment'
+            'rate' => [
+                'button' =>'Evaluate'
+            ],
+            'aprove' => 'Approve',
+            'deny' => "Reject"
         ]
     ],
 
 
     'home' =>[
-        'create-post' => 'Create new post'
+        'create-post' => 'Create post'
     ],
     'profile' =>[
         'posts' => 'Posts',
         'edit_button' => 'Edit',
         'user' => [
             'image_description' => ':user_name profile picture'
+        ],
+        'edit' =>[
+            'button' => 'Save',
+            'title' => 'Edit Profile'
         ]
+    ],
+
+    'report'=>[
+        'sucess' => 'Report created successfully',
+        'sucess_text' => 'We appreciate your feedback, we do our best to create a friendly environment and the user is the main part to make it happen!',
+        'error' => 'Post already reported',
+        'nudity' => "Nudity",
+        'adult_nudity' => "Adult Nudity",
+        'sexually_suggestive' => "Sexually Suggestive",
+        'sexual_exploitation' => "Sexual Explotation",
+        'pedophilia' => "Pedophilia",
+
+
+        'violence' => "Violence",
+        'explicit_violence' => "Explicit Violence",
+        'death' => "Death",
+        'animal_violence' => "Animal Violence",
+        'violent_threat' => "Violent Thread",
+
+
+        'harassment' => "Harassment",
+
+        'fake_news' => "Fake news",
+        'health' => "Health",
+        'politics' => "Politics",
+        'social_issues' => "Social Issues",
+
+        'spam' => "Spam",
+
+        'hate_speech' => "Hate Speech",
+        'race_ethnicity' => "Race or Ethinicity",
+        'nationality' => "Nationality",
+        'religion' => "Religion",
+        'sexual_orientation' => "Sexual Orientation",
+        'disability_illness' => "Deisability or Illness",
+
+        'other' => "Other",
     ],
     /*
     |--------------------------------------------------------------------------

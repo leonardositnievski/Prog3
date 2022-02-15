@@ -75,6 +75,43 @@ return [
             'title' => 'Editar Perfil'
         ]
     ],
+
+    'report'=>[
+        'sucess' => 'Denuncia registrada com sucesso',
+        'sucess_text' => 'Agradecemos o seu feedback, fazemos os possivel para criar um ambiente amigavel e o usuario é a principal peça para fazer com que isso aconteca!',
+        'error' => 'Publicação ja denunciada',
+        'nudity' => "Nudez",
+        'adult_nudity' => "Nudez de Adultos",
+        'sexually_suggestive' => "Sexualmente Sugestivo",
+        'sexual_exploitation' => "Exploração Sexual",
+        'pedophilia' => "Pedofilia",
+
+
+        'violence' => "Violência",
+        'explicit_violence' => "Violência Explícita",
+        'death' => "Morte",
+        'animal_violence' => "Violência Animal",
+        'violent_threat' => "Ameaça violenta",
+
+
+        'harassment' => "Assedio",
+
+        'fake_news' => "Noticia Falsa",
+        'health' => "Saùde",
+        'politics' => "Politica",
+        'social_issues' => "Questão Social",
+
+        'spam' => "Spam",
+
+        'hate_speech' => "Discurso de odio",
+        'race_ethnicity' => "Raça ou etinia",
+        'nationality' => "Nacionalidade",
+        'religion' => "Religião",
+        'sexual_orientation' => "Orientação Sexual",
+        'disability_illness' => "Incapacidade ou doença",
+
+        'other' => "Outro",
+    ],
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

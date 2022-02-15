@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DenunciaTipo;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\HtmlString;
 
@@ -21,7 +22,9 @@ function componentJS($component) {
 function user() {
     return auth()->user();
 }
-
+function categorias_denuncias(){
+    return DenunciaTipo::get();
+}
 
 function routeLang($route, $params = []) {
     $route = route($route, $params, false);

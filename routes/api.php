@@ -18,5 +18,6 @@ use App\Http\Controllers\UsuariosController;
 
 
 Route::post('/avaliar', [PostController::class, 'avaliar'])->name('avaliar');
+Route::post('/denunciar', [PostController::class, 'denunciar'])->name('denunciar');
 Route::get('/procurar', [UsuariosController::class, 'procurar'])->name('procurar');
 

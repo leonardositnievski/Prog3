@@ -11,11 +11,12 @@ class ToggleInput extends Component
      *
      * @return void
      */
-    public function __construct($name, $placeholder = '', $hint = null)
+    public function __construct($name, $value = false,$placeholder = '', $hint = null)
     {
         $this->name = $name;
         $this->placeholder = $placeholder;
         $this->hint = $hint;
+        $this->value = $value;
     }
 
     /**
@@ -34,6 +35,7 @@ class ToggleInput extends Component
                 'name' => $this->name,
                 'placeholder' => $this->placeholder,
                 'hint' => $this->hint,
+                'value' => $this->value,
                 'attributes' => $data['attributes']
             ])->render();
         };

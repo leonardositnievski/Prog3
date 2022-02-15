@@ -5,7 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\MidiaController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
-
+use Stevebauman\Location\Facades\Location;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 });
 Route::group(['middleware' => ['auth', 'is.admin'], 'prefix' => 'admin'], function(){
+
     Route::get('aprovacoes', [ AdminController::class, 'index'])->name('aprovacoes');
     Route::get('aprovacoes/{id}/{action}', [ AdminController::class, 'autorizacao'])->name('autorizacao');
 
